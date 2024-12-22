@@ -1,5 +1,5 @@
 const timeCount = document.querySelector(".time-count");
-
+const batteryCount = document.querySelector(".battery");
 function updateTime() {
   const now = new Date();
   const hours = now.getHours();
@@ -13,3 +13,10 @@ setInterval(updateTime, 1000);
 
 // Dastlabki marta ishga tushirish
 updateTime();
+
+let battery = navigator.getBattery();
+
+battery.then((batteryObject) => {
+  console.log(batteryObject.level);
+  batteryCount.textContent = `${Math.floor(batteryObject.level * 100)}%`;
+});
